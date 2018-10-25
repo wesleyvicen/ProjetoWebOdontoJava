@@ -1,0 +1,7 @@
+.teste{
+    background-color: white;
+    color: antiquewhite;
+}
+.teste:visited{
+    background-color: aqua
+}

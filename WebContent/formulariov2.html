@@ -1,0 +1,17 @@
+<!DOCTYPE>
+<html lang="pt-br">
+<head>
+<title>Formulario</title>
+<meta charset="utf-8">
+</head>
+<body>
+	<form name="form" action="/ProjetoOdonto/ServletControlador" method = "POST">
+		CPF: <br> <input type="text" name="cpf"
+			pattern="\d(3).\d(3).\(3).\(3)-\(2)" maxlength="14"
+			title="Digite o CPF no formato: XXX.XXX.XXX-XX" required /><br />
+		SENHA: <br /> <input type="password" name="senha"
+			title="Preencha o campo senha" required /><br /> <input
+			type="submit" value="Entrar" />
+	</form>
+</body>
+</html>
