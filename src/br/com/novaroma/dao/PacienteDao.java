@@ -17,8 +17,6 @@ public class PacienteDao {
 	}
 
 	public boolean inserir(Paciente paciente) {
-		System.out.println("cadastrando...");
-
 		String sql = "insert into paciente (nome, cpf, endereco, numero, bairro,  cep, uf, cidade, distrito) values (?, ?, ?, ?, ?, ?, ? , ?, ?)";
 		int numero;
 		boolean toReturn = false;
@@ -34,6 +32,33 @@ public class PacienteDao {
 			stmt.setString(8, paciente.getCidade());
 			stmt.setString(9, paciente.getDistrito());
 
+			// stmt.execute();
+			numero = stmt.executeUpdate();
+			toReturn = numero > 0;
+
+			System.out.println(numero);
+			stmt.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return toReturn;
+	}
+	
+	public boolean atualizar(Paciente paciente) {
+		String sql = "update paciente set nome = ?, endereco = ?, numero = ?, bairro = ?, cep = ?, uf = ?, cidade = ?, distrito = ? where cpf =" + paciente.getCpf();
+		
+		int numero;
+		boolean toReturn = false;
+		try {
+			PreparedStatement stmt = conn.prepareStatement(sql);
+			stmt.setString(1, paciente.getNome());
+			stmt.setString(2, paciente.getEndereco());
+			stmt.setString(3, paciente.getNumero());
+			stmt.setString(4, paciente.getBairro());
+			stmt.setString(5, paciente.getCep());
+			stmt.setString(6, paciente.getUf());
+			stmt.setString(7, paciente.getCidade());
+			stmt.setString(8, paciente.getDistrito());
 			// stmt.execute();
 			numero = stmt.executeUpdate();
 			toReturn = numero > 0;

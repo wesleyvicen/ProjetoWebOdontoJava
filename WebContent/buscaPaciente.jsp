@@ -18,7 +18,7 @@
 		<span>Deseja buscar um Paciente para visualizar ou atualizar
 			Cadastro?</span><br> <input type="text" placeholder="Digite o CPF"
 			name="buscar" maxlength="11">
-		<button class="btn" id="btn_buscar" type="submit" style="cursor: hand"
+		<button class="btn" id="btn_buscar" type="submit"
 			name="buscar">Buscar</button>
 	</form>
 

@@ -73,6 +73,7 @@ textarea {
     background-color: #f48888;
     color: white;
     font-weight: 600;
+    cursor: hand
 }
 
 textarea,

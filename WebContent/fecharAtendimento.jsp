@@ -20,12 +20,6 @@
 
 			AtendimentoControlador controler = new AtendimentoControlador();
 			boolean toReturn = controler.fecharAtend(atendimento);
-			if (toReturn) {
-				System.out.println("Sucesso!");
-
-			} else {
-				System.out.println("Sucesso!");
-			}
 		} else {
 			out.write("PARAMETRO INVÁLIDO PARA FECHAMENTO DE OS");
 		}

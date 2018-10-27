@@ -18,8 +18,9 @@
 	<form class="form" method="post">
 		<span>Digite um CPF existente no Banco para remover.</span> <br>
 		<%
-			String buscar = "";
-			if (!(buscar.equals(null) && buscar.equals(""))) {
+
+			if (request.getParameter("cpf") != null) {
+				String buscar = "";
 				buscar = request.getParameter("cpf");
 				System.out.println(buscar);
 		%>
@@ -41,7 +42,7 @@
 		}else{
 			System.out.print("Falhou");
 		}
-		%>
+	%>
 
 	</main>
 </body>

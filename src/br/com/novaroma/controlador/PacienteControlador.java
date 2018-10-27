@@ -35,4 +35,12 @@ public class PacienteControlador {
 	public boolean deletarPaciente(String cpf_paciente) {
 		return dao.deletarPaciente(cpf_paciente);
 	}
+	
+	public boolean atualizarPaciente(Paciente paciente) {
+
+		if (ValidacoesAten.validaCpfCliente(paciente)) {
+			return dao.atualizar(paciente);
+		}
+		return false;
+	}
 }
