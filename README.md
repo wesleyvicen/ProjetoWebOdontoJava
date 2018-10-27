@@ -13,7 +13,7 @@ Projeto foi feito para a disciplica de Desenvolvimento web da Faculdade Nova Rom
   - Paciente
   - Atendimento
 - Remoção
-  Paciente
+  - Paciente
 - Fechar atendimento
   - Atendimento
 - Listagem
@@ -22,8 +22,6 @@ Projeto foi feito para a disciplica de Desenvolvimento web da Faculdade Nova Rom
 - Busca
   - Paciente
   - Atendimentos do paciente
-
-# Funcionalidades a terminar
 - Atualização
   - Paciente
   - Atendimento
