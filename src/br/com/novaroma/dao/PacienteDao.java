@@ -3,6 +3,7 @@ package br.com.novaroma.dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -35,18 +36,27 @@ public class PacienteDao {
 			// stmt.execute();
 			numero = stmt.executeUpdate();
 			toReturn = numero > 0;
+			conn.commit();
 
 			System.out.println(numero);
 			stmt.close();
+
 		} catch (Exception e) {
 			e.printStackTrace();
+			try {
+				conn.rollback();
+			} catch (SQLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
 		}
 		return toReturn;
 	}
-	
+
 	public boolean atualizar(Paciente paciente) {
-		String sql = "update paciente set nome = ?, endereco = ?, numero = ?, bairro = ?, cep = ?, uf = ?, cidade = ?, distrito = ? where cpf =" + paciente.getCpf();
-		
+		String sql = "update paciente set nome = ?, endereco = ?, numero = ?, bairro = ?, cep = ?, uf = ?, cidade = ?, distrito = ? where cpf ="
+				+ paciente.getCpf();
+
 		int numero;
 		boolean toReturn = false;
 		try {
@@ -55,7 +65,7 @@ public class PacienteDao {
 			stmt.setString(2, paciente.getEndereco());
 			stmt.setString(3, paciente.getNumero());
 			stmt.setString(4, paciente.getBairro());
-			stmt.setString(5, paciente.getCep());
+			stmt.setString(5, paciente.getCep()); 
 			stmt.setString(6, paciente.getUf());
 			stmt.setString(7, paciente.getCidade());
 			stmt.setString(8, paciente.getDistrito());

@@ -8,7 +8,6 @@ import java.util.List;
 
 import br.com.novaroma.conexao.ConnectionFactory;
 import br.com.novaroma.entidades.Atendimento;
-import br.com.novaroma.entidades.Paciente;
 
 public class AtendimentoDao {
 	private Connection conn;
@@ -17,7 +16,7 @@ public class AtendimentoDao {
 		conn = new ConnectionFactory().getConnection();
 	}
 
-	public void inserir(Atendimento atendimento) {
+	public boolean inserir(Atendimento atendimento) {
 		String sql = " insert into atendimento (nome , descricao, status, cpf_paciente) values (? , ? , ?,?)";
 		int numero;
 		boolean toReturn = false;
@@ -37,6 +36,7 @@ public class AtendimentoDao {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		return toReturn;
 	}
 
 	public List<Atendimento> listar() {

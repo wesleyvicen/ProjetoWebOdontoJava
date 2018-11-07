@@ -17,33 +17,11 @@
 	<main class="centro">
 	<form class="form" method="post">
 		<span>Digite um CPF existente no Banco para remover.</span> <br>
-		<%
-
-			if (request.getParameter("cpf") != null) {
-				String buscar = "";
-				buscar = request.getParameter("cpf");
-				System.out.println(buscar);
-		%>
 		<input type="text" placeholder="Digite o CPF" name="cpf_paciente"
-			maxlength="11" value="<%=buscar%>">
-		<%
-			} else {
-		%>
-		<input type="text" placeholder="Digite o CPF" name="cpf_paciente"
-			maxlength="11">
-		<%
-			}
-		%>
+			maxlength="11" value="${sessionScope.cpf}">
 		<button class="btn" id="btn_buscar" type="submit" style="cursor: hand"
 			name="buscar">Remover</button>
 	</form>
-	<%if(toReturn){
-		System.out.print("Removeu");
-		}else{
-			System.out.print("Falhou");
-		}
-	%>
-
 	</main>
 </body>
 </html>

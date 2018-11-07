@@ -4,11 +4,10 @@ import java.util.List;
 
 import br.com.novaroma.dao.AtendimentoDao;
 import br.com.novaroma.entidades.Atendimento;
-import br.com.novaroma.entidades.Paciente;
 
 
 public class AtendimentoControlador {
-	AtendimentoDao dao = new AtendimentoDao();
+	AtendimentoDao dao = new AtendimentoDao() ;
 
 	public boolean inserirPaciente(Atendimento atendimento) {
 		boolean resultado = false;

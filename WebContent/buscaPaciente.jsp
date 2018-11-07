@@ -60,7 +60,8 @@
 			<td><%=paciente.getUf()%></td>
 			<td><%=paciente.getCidade()%></td>
 			<td><%=paciente.getDistrito()%></td>
-			<td class="remover"><a href = "RemoverPaciente.jsp?cpf=<%=paciente.getCpf()%>">Remover</a>
+			<%session.setAttribute("cpf", paciente.getCpf()); %>
+			<td class="remover"><a href = "RemoverPaciente.jsp">Remover</a>
 		</tr>
 		<%
 			}

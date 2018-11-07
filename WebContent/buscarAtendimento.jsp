@@ -47,17 +47,25 @@
 		%>
 		<td>Atendimento em Andamento</td>
 		<%
-			}else{
+			} else {
 		%>
 		<td>Atendimento Finalizado</td>
-		<%} if(atendimento.isStatus()){%>
+		<%
+			}
+				if (atendimento.isStatus()) {
+		%>
 		<td class="remover"><a
 			href="fecharAtendimento.jsp?id=<%=atendimento.getId()%>&fecharAtend=true">Fechar
 				Atendimento</a>
 		</tr>
-		<%} else{%>
-			<td class="remover"><a href="iniciarAten.html">Abrir novo Atendimento</a></tr>
-		<%}
+		<%
+			} else {
+		%>
+		<td class="remover"><a href="iniciarAten.html">Abrir novo
+				Atendimento</a>
+		</tr>
+		<%
+			}
 			}
 		%>
 	</table>

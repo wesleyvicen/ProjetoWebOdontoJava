@@ -2,6 +2,7 @@
 <%@ page import="br.com.novaroma.controlador.PacienteControlador"%>
 <%@ page import="br.com.novaroma.entidades.Paciente"%>
 <%@ page import="java.util.*"%>
+
 <!DOCTYPE>
 <html lang="pt-br">
 <head>
@@ -11,6 +12,7 @@
 <link rel="icon" href="./img/favicon.png">
 </head>
 <body>
+
 	<main class="centro">
 	<form class="form" method="post">
 		<span>Digite um CPF valido para atualizar um paciente.</span><br> <input type="text" placeholder="Digite o CPF"
@@ -43,9 +45,37 @@
             <label for="bairro">Bairro:</label>
             <input id="bairro" type="text" placeholder="Bairro" name="bairro" value =<%=paciente.getBairro()%>><br>
            <label for="cep">CEP:</label>
-            <input id="cep" type="text" placeholder="CEP" name="cep" size="8" maxlength="8" value =<%=paciente.getCep()%>><br>
+            <input id="cep" type="text" placeholder="CEP" name="cep" size="9" maxlength="9" value =<%=paciente.getCep()%> onkeypress="mascara(this, '#####-###')"><br>
             <label for="uf">UF(Estado):</label>
-            <input id="uf" type="text" placeholder="UF" name="uf" maxlength="2" value =<%=paciente.getUf()%>><br>
+            <select id="uf" name="uf">
+				<option value="AC">Acre</option>
+				<option value="AL">Alagoas</option>
+				<option value="AP">Amapá</option>
+				<option value="AM">Amazonas</option>
+				<option value="BA">Bahia</option>
+				<option value="CE">Ceará</option>
+				<option value="DF">Distrito Federal</option>
+				<option value="ES">Espírito Santo</option>
+				<option value="GO">Goiás</option>
+				<option value="MA">Maranhão</option>
+				<option value="MT">Mato Grosso</option>
+				<option value="MS">Mato Grosso do Sul</option>
+				<option value="MG">Minas Gerais</option>
+				<option value="PA">Pará</option>
+				<option value="PB">Paraíba</option>
+				<option value="PR">Paraná</option>
+				<option value="PE">Pernambuco</option>
+				<option value="PI">Piauí</option>
+				<option value="RJ">Rio de Janeiro</option>
+				<option value="RN">Rio Grande do Norte</option>
+				<option value="RS">Rio Grande do Sul</option>
+				<option value="RO">Rondônia</option>
+				<option value="RR">Roraima</option>
+				<option value="SC">Santa Catarina</option>
+				<option value="SP">São Paulo</option>
+				<option value="SE">Sergipe</option>
+				<option value="TO">Tocantins</option>
+			</select><br>    
             <label for="cidade">Cidade:</label>
             <input id="cidade" type="text" placeholder="Cidade" name="cidade" value =<%=paciente.getCidade()%>><br>
             <label for="municipio">Municipio:</label>
@@ -56,5 +86,6 @@
 			}
 		%>
 	</main>
+	<script src="js/script.js"></script>
 </body>
 </html>

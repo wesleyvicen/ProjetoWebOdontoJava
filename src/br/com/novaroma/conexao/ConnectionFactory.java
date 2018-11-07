@@ -6,36 +6,37 @@ import java.sql.SQLException;
 
 public class ConnectionFactory {
 
+	private static String serverName = "localhost"; // caminho do servidor do BD
+	private static String mydatabase = "projetoodonto"; // nome do seu banco de dados
+	private static String url = "jdbc:mysql://" + serverName + "/" + mydatabase;
+	private static String username = "root"; // nome de um usuário de seu BD
+	private static String password = "12345678"; // sua senha de acesso
+
 	public Connection connection;
-	
-	
+
 	public ConnectionFactory() {
-		// Configurando a nossa conexão com um banco de dados//
-		String driverName = "com.mysql.jdbc.Driver";                        
+		// Configurando a conexão com um banco de dados//
+
 		try {
-			Class.forName(driverName);
-		} catch (ClassNotFoundException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
-		 
-        String serverName = "localhost";    //caminho do servidor do BD
-        String mydatabase = "projetoodonto";        //nome do seu banco de dados
-        String url = "jdbc:mysql://" + serverName + "/" + mydatabase;
-        String username = "root";        //nome de um usuário de seu BD      
-        String password = "12345678";      //sua senha de acesso
-        
-        try {
+
+			// Carrega o driver JDBC do Mysql
+			Class.forName("com.mysql.jdbc.Driver");
+
 			this.connection = DriverManager.getConnection(url, username, password);
-			System.out.println("1");
-			
+			connection.setAutoCommit(false);
+			System.out.println("Conectado com sucesso ao banco de dados!");
+
+		} catch (ClassNotFoundException e) {
+
+			System.out.println("Não foi possível encontrar o driver do banco de dados " + e.getMessage());
+
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+
+			System.out.println("Não foi possível conectar ao banco de dados " + e.getMessage());
+
 		}
-        System.out.println("ok");
 	}
-	
+
 	public Connection getConnection() {
 		return this.connection;
 	}
