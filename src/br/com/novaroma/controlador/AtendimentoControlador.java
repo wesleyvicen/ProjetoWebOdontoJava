@@ -29,16 +29,9 @@ public class AtendimentoControlador {
 		return this.dao.listarAtendPeloId(numAtend);
 	}
 
-	public boolean updateAtend(Atendimento atendimento) {
-		return dao.updateAtend(atendimento);
-	}
-
 	public boolean fecharAtend(Atendimento atendimento) {
 		return dao.fecharAtend(atendimento);
 
 	}
 
-	public boolean deletarAtend(int numAtend) {
-		return dao.deletarAtend(numAtend);
-	}
 }

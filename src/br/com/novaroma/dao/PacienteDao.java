@@ -65,18 +65,25 @@ public class PacienteDao {
 			stmt.setString(2, paciente.getEndereco());
 			stmt.setString(3, paciente.getNumero());
 			stmt.setString(4, paciente.getBairro());
-			stmt.setString(5, paciente.getCep()); 
+			stmt.setString(5, paciente.getCep());
 			stmt.setString(6, paciente.getUf());
 			stmt.setString(7, paciente.getCidade());
 			stmt.setString(8, paciente.getDistrito());
 			// stmt.execute();
 			numero = stmt.executeUpdate();
 			toReturn = numero > 0;
+			conn.commit();
 
 			System.out.println(numero);
 			stmt.close();
 		} catch (Exception e) {
 			e.printStackTrace();
+			try {
+				conn.rollback();
+			} catch (SQLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
 		}
 		return toReturn;
 	}
@@ -102,6 +109,7 @@ public class PacienteDao {
 
 				lista.add(paciente);
 			}
+			rs.close();
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 		}
@@ -130,14 +138,14 @@ public class PacienteDao {
 				lista.add(paciente);
 
 			}
+			rs.close();
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return lista;
 	}
 
-	public boolean deletarPaciente(String cpf_paciente) {
+	public Boolean deletarPaciente(String cpf_paciente) {
 		String query = "delete from paciente where cpf=" + cpf_paciente;
 		boolean toReturn = false;
 		int numero;
@@ -146,8 +154,16 @@ public class PacienteDao {
 			numero = stmt.executeUpdate();
 			toReturn = numero > 0;
 			toReturn = true;
+			conn.commit();
+			stmt.close();
 		} catch (Exception e) {
-			System.out.println(e.getMessage());
+			e.printStackTrace();
+			try {
+				conn.rollback();
+			} catch (SQLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
 		}
 
 		return toReturn;

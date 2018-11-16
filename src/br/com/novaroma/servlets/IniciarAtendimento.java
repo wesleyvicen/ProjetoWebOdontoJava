@@ -35,12 +35,16 @@ public class IniciarAtendimento extends HttpServlet {
 		out.println("<html>");
 		out.println("<head><title>Servlet</title></head>");
 		out.println("<body>");
-		out.println("<h1>"+ request.getParameter("nome")+ " Foi Cadastrado com Sucesso! </h1>");
+		out.println("<h1>"+ request.getParameter("nome")+ ", Foi iniciado um atendimento!</h1>");
 		out.println("<a href='index.html'> HOME </a>");
 		out.println("</body>");
 		out.println("</html>");
 		out.flush();
 		out.close();
+	}
+	@Override
+	public void destroy() {
+		super.destroy();
 	}
 
 }

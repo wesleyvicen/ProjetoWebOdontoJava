@@ -3,6 +3,7 @@ package br.com.novaroma.dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -30,11 +31,17 @@ public class AtendimentoDao {
 			// stmt.execute();
 			numero = stmt.executeUpdate();
 			toReturn = numero > 0;
-
+			conn.commit();
 			System.out.println(numero);
 			stmt.close();
 		} catch (Exception e) {
 			e.printStackTrace();
+			try {
+				conn.rollback();
+			} catch (SQLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
 		}
 		return toReturn;
 	}
@@ -75,19 +82,14 @@ public class AtendimentoDao {
 				atendimento.setNome(rs.getString("nome"));
 				atendimento.setDescricao(rs.getString("descricao"));
 				atendimento.setStatus(rs.getBoolean("status"));
-				
+
 				lista.add(atendimento);
 			}
-
+			rs.close();
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 		}
 		return lista;
-	}
-
-	public boolean updateAtend(Atendimento atendimento) {
-		// TODO Auto-generated method stub
-		return false;
 	}
 
 	public boolean fecharAtend(Atendimento atendimento) {
@@ -100,16 +102,19 @@ public class AtendimentoDao {
 			numero = stmt.executeUpdate();
 			toReturn = numero > 0;
 			toReturn = true;
+			conn.commit();
+			stmt.close();
 		} catch (Exception e) {
-			System.out.println(e.getMessage());
+			e.printStackTrace();
+			try {
+				conn.rollback();
+			} catch (SQLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
 		}
 
 		return toReturn;
-	}
-
-	public boolean deletarAtend(int numAtend) {
-		// TODO Auto-generated method stub
-		return false;
 	}
 
 }

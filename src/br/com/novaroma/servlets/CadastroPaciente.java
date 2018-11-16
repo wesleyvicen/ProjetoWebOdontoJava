@@ -1,7 +1,6 @@
 package br.com.novaroma.servlets;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -44,9 +43,15 @@ public class CadastroPaciente extends HttpServlet {
 			request.setAttribute("paciente", controlador.listar());
 			view.forward(request, response);
 		} catch (Exception e) {
+			
 			e.printStackTrace();
 		}
 
+	}
+	@Override
+	public void destroy() {
+		// TODO Auto-generated method stub
+		super.destroy();
 	}
 
 }

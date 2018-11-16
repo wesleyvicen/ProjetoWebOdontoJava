@@ -20,8 +20,10 @@
 
 			AtendimentoControlador controler = new AtendimentoControlador();
 			boolean toReturn = controler.fecharAtend(atendimento);
+			out.write("ATENDIMENTO FINALIZADO!");
+			out.write("<br><a href='/ProjetoOdonto/buscarAtendimento.jsp'>Voltar</input>");
 		} else {
-			out.write("PARAMETRO INVÁLIDO PARA FECHAMENTO DE OS");
+			out.write("PARAMETRO INVÁLIDO PARA FECHAMENTO DE ATENDIMENTO");
 		}
 	%>
 </body>

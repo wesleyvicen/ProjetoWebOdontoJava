@@ -12,7 +12,7 @@
 <body>
 	<%
 		PacienteControlador controler = new PacienteControlador();
-		boolean toReturn = controler.deletarPaciente(request.getParameter("cpf_paciente"));
+	boolean toReturn = false;
 	%>
 	<main class="centro">
 	<form class="form" method="post">
@@ -22,6 +22,8 @@
 		<button class="btn" id="btn_buscar" type="submit" style="cursor: hand"
 			name="buscar">Remover</button>
 	</form>
+	<% toReturn = controler.deletarPaciente(request.getParameter("cpf_paciente"));%>
+
 	</main>
 </body>
 </html>

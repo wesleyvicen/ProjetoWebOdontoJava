@@ -52,13 +52,18 @@ public class atualizarPaciente extends HttpServlet {
 			out.println("<html>");
 			out.println("<head><title>Alteração ocorreu um erro</title></head>");
 			out.println("<body>");
-			out.println("<h1>" + nome + " Não foi Atualizado com Sucesso! </h1>");
+			out.println("<h1>" + nome + " Não foi Atualizado com Sucesso!</h1>");
 			out.println("<a href='index.html'> HOME </a>");
 			out.println("</body>");
 			out.println("</html>");
 			out.flush();
 			out.close();
 		}
+	}
+	@Override
+	public void destroy() {
+		// TODO Auto-generated method stub
+		super.destroy();
 	}
 
 }

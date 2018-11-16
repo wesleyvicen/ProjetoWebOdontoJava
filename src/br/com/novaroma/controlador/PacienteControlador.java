@@ -32,7 +32,7 @@ public class PacienteControlador {
 		return lista;
 	}
 
-	public boolean deletarPaciente(String cpf_paciente) {
+	public Boolean deletarPaciente(String cpf_paciente) {
 		return dao.deletarPaciente(cpf_paciente);
 	}
 	

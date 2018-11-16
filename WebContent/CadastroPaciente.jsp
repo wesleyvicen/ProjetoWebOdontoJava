@@ -1,11 +1,11 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=utf-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE>
 <html lang="pt-br">
 
 <head>
     <title>Cadastro Aluno</title>
-    <meta charset="ISO-8859-1">
+    <meta charset="utf-8">
     <link rel="stylesheet" type="text/css" href="css/style.css">
     <link rel="icon" href="./img/favicon.png">
 </head>
