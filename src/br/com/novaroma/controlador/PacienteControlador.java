@@ -10,7 +10,6 @@ public class PacienteControlador {
 	private PacienteDao dao;
 
 	public PacienteControlador() {
-		super();
 		this.dao = new PacienteDao();
 	}
 
