@@ -1,87 +1,43 @@
--- MySQL dump 10.13  Distrib 8.0.12, for Win64 (x86_64)
---
--- Host: localhost    Database: projetoodonto
--- ------------------------------------------------------
--- Server version	8.0.12
+//Criação do banco de dados
+create database projetoodonto;
 
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
- SET NAMES utf8 ;
-/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
-/*!40103 SET TIME_ZONE='+00:00' */;
-/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
-/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
-/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
-/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+//Criação da tabela Paciente
+create table paciente(
+id int not null auto_increment,
+nome varchar(30) not null,
+cpf varchar(11) not null unique,
+endereco varchar(255),
+numero varchar(4),
+cep varchar(9),
+bairro varchar(10),
+uf varchar(2),
+cidade varchar(30),
+primary key(id)) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
---
--- Table structure for table `atendimento`
---
 
-DROP TABLE IF EXISTS `atendimento`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
- SET character_set_client = utf8mb4 ;
-CREATE TABLE `atendimento` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `nome` varchar(30) DEFAULT NULL,
-  `descricao` text,
-  `status` tinyint(1) DEFAULT NULL,
-  `cpf_paciente` varchar(20) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
+//Criação da tabela Atendimento
+create table atendimento(
+id int not null auto_increment,
+descricao varchar(255),
+status tinyint(1),
+cpf_paciente varchar(11) not null,
+FOREIGN KEY (cpf_paciente) REFERENCES paciente(cpf),
+primary key(id))ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
---
--- Dumping data for table `atendimento`
---
 
-LOCK TABLES `atendimento` WRITE;
-/*!40000 ALTER TABLE `atendimento` DISABLE KEYS */;
-INSERT INTO `atendimento` VALUES (1,'Wesley','Teste',0,'11951606400'),(2,'wesley vicente','dsfsdfsd',0,'11951606400'),(3,'wesley','dsdsad',0,'11951606400'),(4,'Wesley1','Dor de dente',0,'11951606401'),(5,'Wesley1','Dor no maxilar',1,'11951606401'),(6,'Wesley1','ManutenÃ§Ã£o no aparelho',1,'11951606401'),(7,'Wesley','Dor no maxilar',0,'11951606400'),(8,'Wesley','Dor nde dente',0,'11951606400'),(9,'Wesley','ManutenÃ§Ã£o no aparelho',1,'11951606400');
-/*!40000 ALTER TABLE `atendimento` ENABLE KEYS */;
-UNLOCK TABLES;
 
---
--- Table structure for table `paciente`
---
+select paciente.nome, atendimento.* from atendimento join paciente on atendimento.cpf_paciente = paciente.cpf;
 
-DROP TABLE IF EXISTS `paciente`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
- SET character_set_client = utf8mb4 ;
-CREATE TABLE `paciente` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `nome` varchar(30) NOT NULL,
-  `cpf` varchar(30) NOT NULL,
-  `endereco` varchar(30) DEFAULT NULL,
-  `numero` varchar(4) DEFAULT NULL,
-  `cep` varchar(9) DEFAULT '55850-000',
-  `bairro` varchar(10) DEFAULT NULL,
-  `uf` varchar(2) DEFAULT 'PE',
-  `cidade` varchar(30) DEFAULT 'VicÃªncia',
-  `distrito` varchar(30) DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `cpf` (`cpf`)
-) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
 
---
--- Dumping data for table `paciente`
---
+select * from atendimento where cpf_paciente=
 
-LOCK TABLES `paciente` WRITE;
-/*!40000 ALTER TABLE `paciente` DISABLE KEYS */;
-INSERT INTO `paciente` VALUES (13,'Wesley','11951606400','PraÃ§a Joaquim Nabuco','10','558500000','Centro','PE','VicÃªncia','VicÃªncia2'),(14,'Wesley2','11951606401','PraÃ§a Joaquim Nabuco','10','558500000','Centro','PE','VicÃªncia','VicÃªncia2'),(15,'Wesley3','11951606403','PraÃ§a Joaquim Nabuco','10','558500000','Centro','PE','VicÃªncia','VicÃªncia2'),(16,'Wesley4','11951606404','PraÃ§a Joaquim Nabuco','10','558500000','Centro','PE','VicÃªncia','VicÃªncia2');
-/*!40000 ALTER TABLE `paciente` ENABLE KEYS */;
-UNLOCK TABLES;
-/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+select paciente.nome, atendimento.* from atendimento join paciente on atendimento.cpf_paciente = paciente.cpf where cpf_paciente= '11951606400';
 
-/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
-/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
-/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
-/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-10-23 20:06:30
+//Script para preencher alguns pacientes.
+insert into paciente (nome, cpf, endereco, numero, bairro,  cep, uf, cidade) values 
+('Vitor Tomás Marcelo Pires', '14064615476', 'Praça General Dantas Barreto', '611', 'Centro', '54110-060', 'PE', 'Jaboatão dos Guararapes'),
+('André Ian Corte Real', '02927641463', 'Rua Antônio F Moreno', '242','Boa Vista', '56519-470', 'PE', 'Arcoverde'),
+('Luís Vicente Freitas', '90211064424', 'Rua Maciel Monteiro', '185','Timbí', '54768-652', 'PE', 'Camaragibe'),
+('Sebastião Martin Aragão', '43131246405', 'Rua C', '130','Cidade Jardim', '56507-025', 'PE', 'Arcoverde'),
+('Edson Anthony Ramos', '42530802432', 'Rua Adalgisa Guimarães de Souza', '143','Centro', '53401-245', 'PE', 'Paulista');

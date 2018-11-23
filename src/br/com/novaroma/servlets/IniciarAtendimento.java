@@ -24,27 +24,27 @@ public class IniciarAtendimento extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		Atendimento atendimento = new Atendimento();
-		
+
 		atendimento.setCpfPaciente(request.getParameter("cpf_paciente"));
-		atendimento.setNome(request.getParameter("nome"));
 		atendimento.setStatus(true);
 		atendimento.setDescricao(request.getParameter("descricao"));
 		controler.inserirPaciente(atendimento);
 		response.setContentType("text/html; charset=UTF-8");
 		PrintWriter out = response.getWriter();
 		out.println("<html>");
-		out.println("<head><title>Servlet</title></head>");
+		out.println("<head><title>Dentilab</title></head>");
 		out.println("<body>");
-		out.println("<h1>"+ request.getParameter("nome")+ ", Foi iniciado um atendimento!</h1>");
+		if (atendimento.getInfo() == 1) {
+			out.println("<h1> CPF: " + atendimento.getCpfPaciente()
+					+ " ainda não cadastrado, volte e Cadastre o paciente</h1>");
+		} else {
+			out.println("<h1>Foi iniciado um atendimento!</h1>");
+		}
 		out.println("<a href='index.html'> HOME </a>");
 		out.println("</body>");
 		out.println("</html>");
 		out.flush();
 		out.close();
-	}
-	@Override
-	public void destroy() {
-		super.destroy();
 	}
 
 }

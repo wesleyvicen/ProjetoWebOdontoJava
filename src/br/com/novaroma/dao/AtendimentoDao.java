@@ -18,15 +18,14 @@ public class AtendimentoDao {
 	}
 
 	public boolean inserir(Atendimento atendimento) {
-		String sql = " insert into atendimento (nome , descricao, status, cpf_paciente) values (? , ? , ?,?)";
+		String sql = " insert into atendimento (descricao, status, cpf_paciente) values (?, ?, ?)";
 		int numero;
 		boolean toReturn = false;
 		try {
 			PreparedStatement stmt = conn.prepareStatement(sql);
-			stmt.setString(1, atendimento.getNome());
-			stmt.setString(2, atendimento.getDescricao());
-			stmt.setBoolean(3, atendimento.isStatus());
-			stmt.setString(4, atendimento.getCpfPaciente());
+			stmt.setString(1, atendimento.getDescricao());
+			stmt.setBoolean(2, atendimento.isStatus());
+			stmt.setString(3, atendimento.getCpfPaciente());
 
 			// stmt.execute();
 			numero = stmt.executeUpdate();
@@ -35,6 +34,9 @@ public class AtendimentoDao {
 			System.out.println(numero);
 			stmt.close();
 		} catch (Exception e) {
+			if (e instanceof com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException) {
+				atendimento.setInfo(1);
+			}
 			e.printStackTrace();
 			try {
 				conn.rollback();
@@ -48,7 +50,7 @@ public class AtendimentoDao {
 
 	public List<Atendimento> listar() {
 		List<Atendimento> lista = new ArrayList<Atendimento>();
-		String query = "select * from atendimento";
+		String query = "select paciente.nome, atendimento.* from atendimento join paciente on atendimento.cpf_paciente = paciente.cpf";
 		try {
 			PreparedStatement stmt = conn.prepareStatement(query);
 			ResultSet rs = stmt.executeQuery();
@@ -72,7 +74,8 @@ public class AtendimentoDao {
 
 	public List<Atendimento> listarAtendPeloId(long numAtend) {
 		List<Atendimento> lista = new ArrayList<Atendimento>();
-		String query = "select * from atendimento where cpf_paciente= " + numAtend;
+		String query = "select paciente.nome, atendimento.* from atendimento join paciente on atendimento.cpf_paciente = paciente.cpf where cpf_paciente=  "
+				+ numAtend;
 		try {
 			PreparedStatement stmt = this.conn.prepareStatement(query);
 			ResultSet rs = stmt.executeQuery();
@@ -109,7 +112,6 @@ public class AtendimentoDao {
 			try {
 				conn.rollback();
 			} catch (SQLException e1) {
-				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
 		}

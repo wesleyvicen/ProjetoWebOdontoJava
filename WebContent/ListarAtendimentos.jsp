@@ -2,6 +2,8 @@
 <%@ page import="br.com.novaroma.controlador.AtendimentoControlador"%>
 <%@ page import="br.com.novaroma.entidades.Atendimento"%>
 <%@ page import="java.util.*"%>
+
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -23,28 +25,22 @@
 			<th>Status:</th>
 
 		</tr>
-		<%
-			for (Atendimento atendimento : lista) {
-		%>
-		<tr>
+		<c:forEach items="<%=lista%>" var="user">
+			<tr>
+				<td>${user.cpfPaciente}</td>
+				<td>${user.nome}</td>
+				<td>${user.descricao}</td>
+				
+				<c:if test="${user.status}">
+					<td>Atendimento em Andamento</td>
+				</c:if>
+				
+				<c:if test="${not user.status}">
+					<td>Atendimento Finalizado</td>
+				</c:if>
 
-			<td><%=atendimento.getCpfPaciente()%></td>
-			<td><%=atendimento.getNome()%></td>
-			<td><%=atendimento.getDescricao()%></td>
-			<%
-			if (atendimento.isStatus()) {
-		%>
-		<td>Atendimento em Andamento</td>
-		<%
-			}else{
-		%>
-		<td>Atendimento Finalizado</td>
-		<%} %>
-
-		</tr>
-		<%
-			}
-		%>
+			</tr>
+		</c:forEach>
 	</table>
 
 </body>

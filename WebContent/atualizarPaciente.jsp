@@ -1,4 +1,4 @@
-<%@ page contentType="text/html; charset=UTF-8"%>
+<%@ page contentType="text/html; charset=utf-8"%>
 <%@ page import="br.com.novaroma.controlador.PacienteControlador"%>
 <%@ page import="br.com.novaroma.entidades.Paciente"%>
 <%@ page import="java.util.*"%>
@@ -37,7 +37,7 @@
 		 <label for="nome">Nome:</label>
             <input id="nome" type="text" placeholder="Nome" name="nome" autofocus required value ="<%=paciente.getNome()%>">
             <label for="cpf">CPF:</label>
-            <input id="cpf" type="text" placeholder="CPF" name="cpf" size="11" maxlength="11" required value ="<%=paciente.getCpf()%>"><br>
+            <input id="cpf" type="text" placeholder="CPF" name="cpf" size="11" maxlength="11" required value ="<%=paciente.getCpf()%>" readonly="readonly"><br>
             <label for="endereco">Endereço:</label>
             <input id="endereco" type="text" placeholder="Endereço" name="endereco" value ="<%=paciente.getEndereco()%>">
            <label for="numero">Nº:</label>
@@ -78,8 +78,6 @@
 			</select><br>    
             <label for="cidade">Cidade:</label>
             <input id="cidade" type="text" placeholder="Cidade" name="cidade" value ="<%=paciente.getCidade()%>"><br>
-            <label for="municipio">Municipio:</label>
-            <input id="municipio" type="text" placeholder="Distrito" name="municipio" value ="<%=paciente.getDistrito()%>"><br>
             <button id="btn_cadastrar" class="btn" type="submit" style="cursor:hand" name="cadastrar">Atualizar</button>
         </form>
 		<%

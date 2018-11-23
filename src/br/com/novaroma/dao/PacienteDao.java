@@ -18,7 +18,7 @@ public class PacienteDao {
 	}
 
 	public boolean inserir(Paciente paciente) {
-		String sql = "insert into paciente (nome, cpf, endereco, numero, bairro,  cep, uf, cidade, distrito) values (?, ?, ?, ?, ?, ?, ? , ?, ?)";
+		String sql = "insert into paciente (nome, cpf, endereco, numero, bairro,  cep, uf, cidade) values (?, ?, ?, ?, ?, ?, ? , ?)";
 		int numero;
 		boolean toReturn = false;
 		try {
@@ -31,14 +31,11 @@ public class PacienteDao {
 			stmt.setString(6, paciente.getCep());
 			stmt.setString(7, paciente.getUf());
 			stmt.setString(8, paciente.getCidade());
-			stmt.setString(9, paciente.getDistrito());
 
 			// stmt.execute();
 			numero = stmt.executeUpdate();
 			toReturn = numero > 0;
 			conn.commit();
-
-			System.out.println(numero);
 			stmt.close();
 
 		} catch (Exception e) {
@@ -54,7 +51,7 @@ public class PacienteDao {
 	}
 
 	public boolean atualizar(Paciente paciente) {
-		String sql = "update paciente set nome = ?, endereco = ?, numero = ?, bairro = ?, cep = ?, uf = ?, cidade = ?, distrito = ? where cpf ="
+		String sql = "update paciente set nome = ?, endereco = ?, numero = ?, bairro = ?, cep = ?, uf = ?, cidade = ? where cpf ="
 				+ paciente.getCpf();
 
 		int numero;
@@ -68,7 +65,6 @@ public class PacienteDao {
 			stmt.setString(5, paciente.getCep());
 			stmt.setString(6, paciente.getUf());
 			stmt.setString(7, paciente.getCidade());
-			stmt.setString(8, paciente.getDistrito());
 			// stmt.execute();
 			numero = stmt.executeUpdate();
 			toReturn = numero > 0;
@@ -105,7 +101,6 @@ public class PacienteDao {
 				paciente.setCep(rs.getString("cep"));
 				paciente.setUf(rs.getString("uf"));
 				paciente.setCidade(rs.getString("cidade"));
-				paciente.setDistrito(rs.getString("distrito"));
 
 				lista.add(paciente);
 			}
@@ -133,7 +128,6 @@ public class PacienteDao {
 				paciente.setCep(rs.getString("cep"));
 				paciente.setUf(rs.getString("uf"));
 				paciente.setCidade(rs.getString("cidade"));
-				paciente.setDistrito(rs.getString("distrito"));
 
 				lista.add(paciente);
 
@@ -145,8 +139,8 @@ public class PacienteDao {
 		return lista;
 	}
 
-	public Boolean deletarPaciente(String cpf_paciente) {
-		String query = "delete from paciente where cpf=" + cpf_paciente;
+	public Boolean deletarPaciente(Paciente paciente) {
+		String query = "delete from paciente where cpf=" + paciente.getCpf();
 		boolean toReturn = false;
 		int numero;
 		try {
@@ -157,6 +151,9 @@ public class PacienteDao {
 			conn.commit();
 			stmt.close();
 		} catch (Exception e) {
+			if (e instanceof com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException) {
+				paciente.setInfo(1);
+			}
 			e.printStackTrace();
 			try {
 				conn.rollback();

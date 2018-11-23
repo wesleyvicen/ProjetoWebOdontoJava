@@ -8,6 +8,8 @@ public class Atendimento {
 	private boolean status;
 	private int id;
 	
+	private int info;
+	
 	public Atendimento() {
 		super();
 	}
@@ -49,6 +51,15 @@ public class Atendimento {
 	}
 	public void setStatus(boolean status) {
 		this.status = status;
+	}
+	
+
+	public int getInfo() {
+		return info;
+	}
+
+	public void setInfo(int info) {
+		this.info = info;
 	}
 
 	@Override

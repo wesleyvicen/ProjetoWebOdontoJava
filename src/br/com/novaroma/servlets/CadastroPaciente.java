@@ -36,7 +36,6 @@ public class CadastroPaciente extends HttpServlet {
 		paciente.setCep(request.getParameter("cep"));
 		paciente.setUf(request.getParameter("uf"));
 		paciente.setCidade(request.getParameter("cidade"));
-		paciente.setDistrito(request.getParameter("municipio"));
 		controlador.inserirPaciente(paciente);
 		try {
 			RequestDispatcher view = request.getRequestDispatcher("/CadastroPaciente.jsp");
@@ -47,11 +46,6 @@ public class CadastroPaciente extends HttpServlet {
 			e.printStackTrace();
 		}
 
-	}
-	@Override
-	public void destroy() {
-		// TODO Auto-generated method stub
-		super.destroy();
 	}
 
 }

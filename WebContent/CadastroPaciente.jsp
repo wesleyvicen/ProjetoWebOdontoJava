@@ -50,7 +50,6 @@
 				<option value="TO">Tocantins</option>
 			</select><br>            
             <input id="cidade" type="text" placeholder="Cidade" name="cidade"><br>
-            <input id="municipio" type="text" placeholder="Distrito" name="municipio"><br>
             <button id="btn_cadastrar" class="btn" type="submit" style="cursor:hand" name="cadastrar">Cadastrar</button>
         </form>
 
@@ -64,7 +63,6 @@
 			<th>CEP:</th>
 			<th>UF:</th>
 			<th>Cidade:</th>
-			<th>Distrito:</th>
 		</tr>
 		<c:forEach items="${paciente}" var="user">
 			<tr>
@@ -76,7 +74,6 @@
 				<td><c:out value="${user.cep}"></c:out></td>
 				<td><c:out value="${user.uf}"></c:out></td>
 				<td><c:out value="${user.cidade}"></c:out></td>
-				<td><c:out value="${user.distrito}"></c:out></td>
 			</tr>
 		</c:forEach>
 	</table>

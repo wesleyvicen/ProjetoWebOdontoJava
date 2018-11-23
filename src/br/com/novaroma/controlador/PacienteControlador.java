@@ -31,8 +31,8 @@ public class PacienteControlador {
 		return lista;
 	}
 
-	public Boolean deletarPaciente(String cpf_paciente) {
-		return dao.deletarPaciente(cpf_paciente);
+	public boolean deletarPaciente(Paciente paciente) {
+		return dao.deletarPaciente(paciente);
 	}
 	
 	public boolean atualizarPaciente(Paciente paciente) {

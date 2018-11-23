@@ -1,4 +1,5 @@
 <%@page import="br.com.novaroma.controlador.PacienteControlador"%>
+<%@ page import="br.com.novaroma.entidades.Paciente"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -12,7 +13,8 @@
 <body>
 	<%
 		PacienteControlador controler = new PacienteControlador();
-	boolean toReturn = false;
+		Paciente paciente = new Paciente();
+		boolean toReturn = false;
 	%>
 	<main class="centro">
 	<form class="form" method="post">
@@ -22,8 +24,14 @@
 		<button class="btn" id="btn_buscar" type="submit" style="cursor: hand"
 			name="buscar">Remover</button>
 	</form>
-	<% toReturn = controler.deletarPaciente(request.getParameter("cpf_paciente"));%>
-
-	</main>
+	<%
+		paciente.setCpf(request.getParameter("cpf_paciente"));
+		toReturn = controler.deletarPaciente(paciente);
+		if (paciente.getInfo() == 1) {
+	%>
+	<h2>Paciente não foi removido pôs tem atendimentos</h2>
+	<%
+		}
+	%> </main>
 </body>
 </html>

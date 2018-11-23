@@ -9,14 +9,14 @@ public class Paciente {
 	private String cep;
 	private String uf;
 	private String cidade;
-	private String distrito;
+	private int info;
 
 	public Paciente() {
 
 	}
 
 	public Paciente(String nome, String cpf, String endereco, String numero, String bairro, String cep, String uf,
-			String cidade, String distrito) {
+			String cidade) {
 		super();
 		this.nome = nome;
 		this.cpf = cpf;
@@ -26,7 +26,6 @@ public class Paciente {
 		this.cep = cep;
 		this.uf = uf;
 		this.cidade = cidade;
-		this.distrito = distrito;
 	}
 
 	public String getNome() {
@@ -93,12 +92,14 @@ public class Paciente {
 		this.cidade = cidade;
 	}
 
-	public String getDistrito() {
-		return distrito;
+	public int getInfo() {
+		return info;
 	}
 
-	public void setDistrito(String distrito) {
-		this.distrito = distrito;
+	public void setInfo(int info) {
+		this.info = info;
 	}
+	
+	
 
 }

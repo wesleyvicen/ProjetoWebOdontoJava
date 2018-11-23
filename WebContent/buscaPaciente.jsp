@@ -18,8 +18,7 @@
 		<span>Deseja buscar um Paciente para visualizar ou atualizar
 			Cadastro?</span><br> <input type="text" placeholder="Digite o CPF"
 			name="buscar" maxlength="11">
-		<button class="btn" id="btn_buscar" type="submit"
-			name="buscar">Buscar</button>
+		<button class="btn" id="btn_buscar" type="submit" name="buscar">Buscar</button>
 	</form>
 
 
@@ -43,7 +42,6 @@
 			<th>CEP:</th>
 			<th>UF:</th>
 			<th>Cidade:</th>
-			<th>Distrito:</th>
 			<th id="acao">Ação</th>
 		</tr>
 		<%
@@ -59,15 +57,16 @@
 			<td><%=paciente.getCep()%></td>
 			<td><%=paciente.getUf()%></td>
 			<td><%=paciente.getCidade()%></td>
-			<td><%=paciente.getDistrito()%></td>
-			<%session.setAttribute("cpf", paciente.getCpf()); %>
-			<td class="remover"><a href = "RemoverPaciente.jsp">Remover</a>
+			<%
+				session.setAttribute("cpf", paciente.getCpf());
+			%>
+			<td class="remover"><a href="RemoverPaciente.jsp">Remover</a>
 		</tr>
 		<%
 			}
 		%>
 	</table>
-		</main>
+	</main>
 
 </body>
 </html>

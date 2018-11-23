@@ -35,6 +35,7 @@ public class ConnectionFactory {
 			System.out.println("Não foi possível conectar ao banco de dados " + e.getMessage());
 
 		}
+		System.out.println();
 	}
 
 	public Connection getConnection() {

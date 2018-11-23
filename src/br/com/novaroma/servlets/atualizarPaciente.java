@@ -23,6 +23,7 @@ public class atualizarPaciente extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		Paciente paciente = new Paciente();
+		response.setContentType("charset=utf-8");
 		paciente.setNome(request.getParameter("nome"));
 		paciente.setCpf(request.getParameter("cpf"));
 		paciente.setEndereco(request.getParameter("endereco"));
@@ -31,39 +32,29 @@ public class atualizarPaciente extends HttpServlet {
 		paciente.setCep(request.getParameter("cep"));
 		paciente.setUf(request.getParameter("uf"));
 		paciente.setCidade(request.getParameter("cidade"));
-		paciente.setDistrito(request.getParameter("municipio"));
-		String nome = request.getParameter("nome");
-		
 		if (controlador.atualizarPaciente(paciente)) {
-			response.setContentType("text/html; charset=UTF-8");
 			PrintWriter out = response.getWriter();
 			out.println("<html>");
-			out.println("<head><title>Alteração Efetuada com Sucesso</title></head>");
+			out.println("<head><title>Alteração Efetuada com Sucesso</title> <meta charset='utf-8'> </head>");
 			out.println("<body>");
-			out.println("<h1>" + nome + " Foi Atualizado com Sucesso! </h1>");
+			out.println("<h1>" + request.getParameter("nome") + " Foi Atualizado com Sucesso! </h1>");
 			out.println("<a href='index.html'> HOME </a>");
 			out.println("</body>");
 			out.println("</html>");
 			out.flush();
 			out.close();
 		} else {
-			response.setContentType("text/html; charset=UTF-8");
 			PrintWriter out = response.getWriter();
 			out.println("<html>");
-			out.println("<head><title>Alteração ocorreu um erro</title></head>");
+			out.println("<head><title>Alteração ocorreu um erro</title> <meta charset='utf-8'> </head>");
 			out.println("<body>");
-			out.println("<h1>" + nome + " Não foi Atualizado com Sucesso!</h1>");
+			out.println("<h1>" + request.getParameter("nome") + " Não foi Atualizado com Sucesso!</h1>");
 			out.println("<a href='index.html'> HOME </a>");
 			out.println("</body>");
 			out.println("</html>");
 			out.flush();
 			out.close();
 		}
-	}
-	@Override
-	public void destroy() {
-		// TODO Auto-generated method stub
-		super.destroy();
 	}
 
 }

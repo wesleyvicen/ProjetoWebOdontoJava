@@ -2,6 +2,8 @@
 <%@ page import="br.com.novaroma.controlador.AtendimentoControlador"%>
 <%@ page import="br.com.novaroma.entidades.Atendimento"%>
 <%@ page import="java.util.*"%>
+
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE>
 <html lang="pt-br">
 <head>
@@ -36,38 +38,28 @@
 			<th>Status:</th>
 			<th id="acao">Ação</th>
 		</tr>
-		<%
-			for (Atendimento atendimento : lista) {
-		%>
+		<c:forEach items="<%=lista%>" var="user">
 
-		<td><%=atendimento.getNome()%></td>
-		<td><%=atendimento.getDescricao()%></td>
-		<%
-			if (atendimento.isStatus()) {
-		%>
-		<td>Atendimento em Andamento</td>
-		<%
-			} else {
-		%>
-		<td>Atendimento Finalizado</td>
-		<%
-			}
-				if (atendimento.isStatus()) {
-		%>
-		<td class="remover"><a
-			href="fecharAtendimento.jsp?id=<%=atendimento.getId()%>&fecharAtend=true">Fechar
-				Atendimento</a>
-		</tr>
-		<%
-			} else {
-		%>
-		<td class="remover"><a href="iniciarAten.html">Abrir novo
-				Atendimento</a>
-		</tr>
-		<%
-			}
-			}
-		%>
+			<td>${user.nome}</td>
+			<td>${user.descricao}</td>
+
+			<c:choose>
+				<c:when test="${user.status}">
+
+					<td>Atendimento em Andamento</td>
+					<td class="remover"><a
+						href="fecharAtendimento.jsp?id=${user.id}&fecharAtend=true">Fechar
+							Atendimento</a>
+					</tr>
+				</c:when>
+				<c:otherwise>
+					<td>Atendimento Finalizado</td>
+					<td class="remover"><a href="iniciarAten.html">Abrir novo
+							Atendimento</a>
+					</tr>
+				</c:otherwise>
+			</c:choose>
+		</c:forEach>
 	</table>
 	</main>
 </body>
