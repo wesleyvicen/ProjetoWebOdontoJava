@@ -1,7 +1,7 @@
-//CriaÁ„o do banco de dados
+//Cria√ß√£o do banco de dados
 create database projetoodonto;
 
-//CriaÁ„o da tabela Paciente
+//Cria√ß√£o da tabela Paciente
 create table paciente(
 id int not null auto_increment,
 nome varchar(30) not null,
@@ -15,7 +15,7 @@ cidade varchar(30),
 primary key(id)) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 
-//CriaÁ„o da tabela Atendimento
+//Cria√ß√£o da tabela Atendimento
 create table atendimento(
 id int not null auto_increment,
 descricao varchar(255),
@@ -31,13 +31,13 @@ select paciente.nome, atendimento.* from atendimento join paciente on atendiment
 
 select * from atendimento where cpf_paciente=
 
-select paciente.nome, atendimento.* from atendimento join paciente on atendimento.cpf_paciente = paciente.cpf where cpf_paciente= '11951606400';
+select paciente.nome, atendimento.* from atendimento join paciente on atendimento.cpf_paciente = paciente.cpf where cpf_paciente= '11951606499';
 
 
 //Script para preencher alguns pacientes.
 insert into paciente (nome, cpf, endereco, numero, bairro,  cep, uf, cidade) values 
-('Vitor Tom·s Marcelo Pires', '14064615476', 'PraÁa General Dantas Barreto', '611', 'Centro', '54110-060', 'PE', 'Jaboat„o dos Guararapes'),
-('AndrÈ Ian Corte Real', '02927641463', 'Rua AntÙnio F Moreno', '242','Boa Vista', '56519-470', 'PE', 'Arcoverde'),
-('LuÌs Vicente Freitas', '90211064424', 'Rua Maciel Monteiro', '185','TimbÌ', '54768-652', 'PE', 'Camaragibe'),
-('Sebasti„o Martin Arag„o', '43131246405', 'Rua C', '130','Cidade Jardim', '56507-025', 'PE', 'Arcoverde'),
-('Edson Anthony Ramos', '42530802432', 'Rua Adalgisa Guimar„es de Souza', '143','Centro', '53401-245', 'PE', 'Paulista');
+('Vitor Tom√°s Marcelo Pires', '14064615476', 'Pra√ßa General Dantas Barreto', '611', 'Centro', '54110-060', 'PE', 'Jaboat√£o dos Guararapes'),
+('Andr√© Ian Corte Real', '02927641463', 'Rua Ant√¥nio F Moreno', '242','Boa Vista', '56519-470', 'PE', 'Arcoverde'),
+('Lu√≠s Vicente Freitas', '90211064424', 'Rua Maciel Monteiro', '185','Timb√≠', '54768-652', 'PE', 'Camaragibe'),
+('Sebasti√£o Martin Arag√£o', '43131246405', 'Rua C', '130','Cidade Jardim', '56507-025', 'PE', 'Arcoverde'),
+('Edson Anthony Ramos', '42530802432', 'Rua Adalgisa Guimar√£es de Souza', '143','Centro', '53401-245', 'PE', 'Paulista');
